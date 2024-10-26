@@ -1,0 +1,5 @@
+
+*.pyc
+*.mp3
+*.txt
+Video_RAG/.env
