@@ -34,6 +34,7 @@ Guidelines for entity type extraction:
 7. Avoid redundancy by choosing the most precise term when alternatives are available.
 8. Aim for a comprehensive list that captures the essence of the content without overgeneralizing.
 9. Do not include generic entity types such as "other" or "unknown".
+10. Consider the speakers, their roles and video setting.
 
 IMPORTANT:
 YOU MUST ONLY RETURN THE ENTITY TYPES AS A SINGLE-LINE JSON RESPONSE WITH NO ADDITIONAL FORMATTING.
@@ -64,6 +65,7 @@ Guidelines for entity type extraction:
 7. Avoid redundancy by choosing the most precise term when alternatives are available.
 8. Aim for a comprehensive list that captures the essence of the content without overgeneralizing.
 9. Do not include generic entity types such as "other" or "unknown".
+10. Consider the speakers, their roles and video setting.
 
 Guidelines for continuation:
 1. Review previously identified entity types to understand the existing coverage.
@@ -128,7 +130,6 @@ The JSON object MUST have the following structure:
 5. Use double quotes for all string values.
 6. Do not use quotes for the integer strength value.
 
-
 -Steps-
 
 1. Identify ALL entities mentioned in the transcript, no matter how minor they may seem. Be thorough and comprehensive.
@@ -185,7 +186,7 @@ Create a comprehensive, detailed summary that fully captures the video's content
 
 Your objective:
 1. Analyze the given entities and relationships thoroughly and deeply.
-2. Identify key speakers and themes. 
+2. Determine the key speakers and themes. 
 3. Create a detailed informative summary that captures the essence of the video content.
 4. Ensure the summary flows naturally and provides a comprehensive overview of the video.
 5. Elaborate and expand as needed to convey the main points effectively.
@@ -203,13 +204,12 @@ As an AI assistant, your task is to reply to a user query based on a knowledge g
 
 Your objective in this task is as follows:
 1. Analyze the given query.
-2. You will be given the entity names and the number of relationships connected to each entity.
+2. You will be given the entity names and their descriptions extracted from the video transcript.
 3. Decide which entities are most relevant to the query.
 
 Input Data:
 Query: "{query}"
 Entities and their descriptions: {entity_list}
-Entities and their number of relationships: {relationship_count}
 
 Output:
 Format the output as a json with the following structure:
@@ -225,7 +225,7 @@ Your objective in this task is as follows:
 1. Analyze the given query.
 2. You will be provided with the involved entities and the relationships between them, extracted from the video transcript.
 3. Examine the speaker information associated with the entities and relationships.
-4. Provide a concise, detailed, and informative response to the query, incorporating relevant speaker insights from the video content.
+4. Provide a detailed, and informative response to the query, incorporating relevant speaker insights from the video content.
 5. Refer to the speaker when responding to the query.
 
 Input Data:

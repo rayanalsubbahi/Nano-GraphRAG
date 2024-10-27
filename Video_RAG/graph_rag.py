@@ -126,8 +126,7 @@ async def get_relevant_entities(llm, graph, query):
     '''Get relevant entities based on the query'''
     # Generate relevant entities and relationships based on a query
     entity_list = list(graph.nodes(data=True))
-    relationship_count = {entity: len(list(graph.neighbors(entity))) for entity, _ in entity_list}
-    relevant_entities = await generate(llm, QUERY_ENTITIES_PROMPT, {'query': query, 'entity_list': entity_list, 'relationship_count': relationship_count})
+    relevant_entities = await generate(llm, QUERY_ENTITIES_PROMPT, {'query': query, 'entity_list': entity_list})
     relevant_entities = json.loads(relevant_entities)
     print(relevant_entities)
     return relevant_entities
