@@ -181,21 +181,24 @@ A Video Transcript Analysis with a Knowledge Graph representing key elements ext
 It includes entities, their descriptions, and relationships between them as follows:
 {entity_relationships_list}
 
-Primary Objective:
-Create a comprehensive, detailed summary that fully captures the video's content, structure, and key messages.
-
 Your objective:
 1. Analyze the given entities and relationships thoroughly and deeply.
-2. Determine the key speakers and themes. 
-3. Create a detailed informative summary that captures the essence of the video content.
-4. Ensure the summary flows naturally and provides a comprehensive overview of the video.
-5. Elaborate and expand as needed to convey the main points effectively.
+2. Create a detailed informative summary that captures the essence of the video content.
+3. Present the information in a logical and easily understandable manner.
+4. Elaborate and expand as needed to convey the main points effectively.
+
+Guidelines:
+- Identify main speakers or key figures based on the video content.
+- Determine the primary topics or themes and expand on them.
+- Highlight any interesting facts, statistics, or unique insights.
+- Provide the response in a structured format as you see fit.
 
 Remember:
+- Use accessible language, explaining technical terms if needed
 - Maintain an informative and engaging tone
-- Base your summary solely on the input data provided
+- Base your summary solely on the provided entities and relationships
 - Do not add external information or speculation
-- Use sections or paragraphs to structure your summary as needed
+- Ensure your summary feels like a natural, informative overview of the video content
 """
 
 
@@ -215,7 +218,13 @@ Output:
 Format the output as a json with the following structure:
 {{"relevant_entities": [<relevant_entities>]}}
 
-YOU MUST ONLY RETURN THE MOST RELEVANT ENTITY NAMES AS A LIST WITH NO ADDITIONAL INFORMATION.
+Critical Requirements-
+1. YOU MUST ONLY RETURN THE MOST RELEVANT ENTITY NAMES AS A LIST WITH NO ADDITIONAL INFORMATION.
+2. DO NOT INCLUDE ANY TEXT BEFORE OR AFTER THE JSON OBJECT.
+3. DO NOT USE PHRASES LIKE "Here's the response:" OR "Here is the extracted knowledge graph in JSON format:".
+4. DO NOT USE MARKDOWN, NEWLINES, OR EXTRA SPACES IN THE JSON.
+5. DO NOT INCLUDE EXPLANATORY NOTES OR COMMENTS.
+6. ENSURE THE JSON IS PROPERLY FORMATTED AND VALID.
 """
 
 QUERY_PROMPT = """
