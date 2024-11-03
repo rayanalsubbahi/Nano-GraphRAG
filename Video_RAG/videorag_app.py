@@ -37,8 +37,12 @@ def setup_llm(model, api_key=None):
 
 def process_video(llm, video_url):
     # Download the audio 
-    audio_file = download_audio(video_url)
-    
+    if not st.session_state.get("audio_file"):
+        with st.spinner('Downloading Audio ...'):
+            audio_file = download_audio(video_url)
+            print(f"Audio file: {audio_file}")
+            st.session_state["audio_file"] = audio_file
+
     # Transcribe the audio
     if not st.session_state.get("video_text"):
         with st.spinner('Processing Video ...'):

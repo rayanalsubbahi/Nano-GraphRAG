@@ -4,6 +4,9 @@ from pytube import cipher, YouTube
 from pytube.innertube import _default_clients
 from pydub import AudioSegment
 
+from pytubefix import YouTube
+from pytubefix.cli import on_progress
+
 _default_clients["ANDROID"]["context"]["client"]["clientVersion"] = "19.08.35"
 _default_clients["IOS"]["context"]["client"]["clientVersion"] = "19.08.35"
 _default_clients["ANDROID_EMBED"]["context"]["client"]["clientVersion"] = "19.08.35"
@@ -56,25 +59,32 @@ cipher.get_throttling_function_name = get_throttling_function_name
 
 def download_audio(url, output_path='.'):
     try:
-        # Create a YouTube object
-        yt = YouTube(url)
+        # Use Pytube
+        # # Create a YouTube object 
+        # yt = YouTube(url)
         
-        # Get the audio stream
-        audio_stream = yt.streams.filter(only_audio=True).first()
+        # # Get the audio stream
+        # audio_stream = yt.streams.filter(only_audio=True).first()
         
-        # Download the audio
-        output_file = audio_stream.download(output_path=output_path)
+        # # Download the audio
+        # output_file = audio_stream.download(output_path=output_path)
         
-        # Convert to MP3
-        name, ext = os.path.splitext(output_file)
-        new_file = name + '.mp3'
-        AudioSegment.from_file(output_file).export(new_file, format="mp3")
+        # # Convert to MP3
+        # name, ext = os.path.splitext(output_file)
+        # new_file = name + '.mp3'
+        # AudioSegment.from_file(output_file).export(new_file, format="mp3")
         
-        # Remove the original file
-        os.remove(output_file)
+        # # Remove the original file
+        # os.remove(output_file)
+        
+        # Use Pytubefix 
+        yt = YouTube(url, on_progress_callback=on_progress)
+        print(yt.title)
+        
+        ys = yt.streams.get_audio_only()
+        new_file = ys.download(mp3=True)
         
         print(f"Audio downloaded successfully: {new_file}")
-        
         return new_file
         
     except Exception as e:
