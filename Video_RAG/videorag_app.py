@@ -17,14 +17,15 @@ MODELS = { #model name: requires API key
     'gemma2': False,
     'qwen2.5': False,
     'claude-3-haiku-20240307': True,
+    'claude-3-5-haiku-20241022': True,
     'gpt-4o-mini-2024-07-18': True
 }
 
 def setup_llm(model, api_key=None):
     try:
-        if model == 'claude-3-haiku-20240307':
+        if 'claude' in model:
             llm = ChatAnthropic(model=model, anthropic_api_key=api_key, max_tokens_to_sample=4096, temperature=0.2)
-        elif model == 'gpt-4o-mini-2024-07-18':
+        elif 'gpt' in model:
             llm = ChatOpenAI(model=model, openai_api_key=api_key)
         else:
             llm = ChatOllama(model=model)
